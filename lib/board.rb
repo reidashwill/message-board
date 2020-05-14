@@ -1,6 +1,6 @@
 class Board
 
-  attr_reader :id
+  attr_reader :id 
   attr_accessor :name
   
   @@total_rows = 0
@@ -15,6 +15,15 @@ class Board
     @@boards.values()
   end
 
+  def self.clear
+    @@total_rows = 0
+    @@boards = {}
+  end
+
+  def self.find(id)
+    @@boards[id]
+  end
+
   def save
     @@boards[self.id] = Board.new({:name => self.name, :id => self.id})
   end
@@ -23,11 +32,14 @@ class Board
     self.name() == board_to_compare.name()
   end  
 
-  def self.clear
-    @@total_rows = 0
-    @@boards = {}
+  def update(name)
+    self.name = name
+    self.save()
   end
 
+  def delete
+    @@boards.delete(self.id)
+  end
 
-
+  
 end
