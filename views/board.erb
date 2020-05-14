@@ -1,0 +1,15 @@
+<h1><%=@board.name%></h1>
+<% if @messages.any? %>
+  <ul>
+    <% @messages.each do |message| %>
+    <li><a href="/boards/<%= message.id %>"><%= message.name%> <br><br> <%= message.body%></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action='/boards/<%=@board.id%>' method='post'>
+  <div class='form-group'>
+    <input id='m' name='message_name' class='form-control' type='text' placeholder='Put your message title here'>
+    <input id='m' name='message_body' class='form-control' type='text' placeholder='Put your message here'>
+    <button type='submit' class='btn-danger'> Submit</button>
+  </div>
